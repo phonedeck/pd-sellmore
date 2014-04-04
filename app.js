@@ -45,6 +45,7 @@ function createCustomers(current) {
 app.get('/customers', function(req, res) {
   redisClient.get('customers', function(err, result) {
     var customers = createCustomers(JSON.parse(result));
+    res.header("Content-Type", "application/json");
     res.end(JSON.stringify({
       customers: customers
     }));
